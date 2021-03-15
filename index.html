@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> 
+    </script> 
+    </head>
+<body>
+<div class="container">
+<h2>HTML Forms</h2>
+
+<form class="form1" method="post">
+  <label >Enter First name:</label><br>
+  <input type="text" id="fname" name="fname" ><br><br>
+
+  <label >Enter Last name:</label><br>
+  <input type="text" id="lname" name="lname" ><br><br>
+
+  <label for="email">Enter your email:</label><br>
+  <input type="email" id="email" name="email"><br><br>
+
+  <label for="phone">Enter a phone number:</label><br>
+  <input type="tel" id="phone" name="phone" pattern="[0-9]{10}"><br><br>
+
+  <label for="address">Enter Address:</label><br>
+  <textarea id="address" name="address" rows="4" cols="50"></textarea><br><br>
+  
+  <label for="birthday">Birthday:</label><br>
+  <input type="date" id="birthday" name="birthday"><br><br>
+
+  <p>Please select your gender:</p>
+  <input type="radio" id="male" name="gender" value="male">
+  <label for="male">Male</label><br>
+  <input type="radio" id="female" name="gender" value="female">
+  <label for="female">Female</label><br>
+  <input type="radio" id="other" name="gender" value="other">
+  <label for="other">Other</label><br><br>
+
+  <label >Enter your State:</label><br>
+  <input type="text" id="state" name="state" ><br><br>
+
+  <label >Enter zip code:</label><br>
+  <input type="text" id="zip" name="zip" ><br><br>
+  
+  <label >Enter your company name:</label><br>
+  <input type="text" id="company" name="company" ><br><br>
+
+  <input id="submitButton" type="submit" value="submit">
+
+</form> 
+</div>
+
+<div id="output"></div> 
+
+<script  type="text/javascript">
+  $(document).ready(function() {
+      
+            $("#submitButton").click(function() { 
+                event.preventDefault();
+                // var x = $("form").serializeArray(); 
+                // console.log(x);
+                $.ajax({
+                    type: 'post',
+                    url: './database.php',
+                    data: $('.form1').serialize(),
+                    success: function () {
+                          alert('form was submitted');
+                    }
+                });
+                // $.each(x, function(i, field) {
+                //     $("#output").append(field.name + ":" 
+                //             + field.value + " "); 
+                // }); 
+            }); 
+        });
+</script>
+
+</body>
+</html>
